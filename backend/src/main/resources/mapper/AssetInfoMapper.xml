@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.AssetInfoMapper">
+
+    <select id="selectAssetDetailList" resultType="com.entity.AssetInfo">
+        SELECT 
+            ai.*,
+            ac.category_name as categoryName,
+            CASE ai.status
+                WHEN 1 THEN '正常'
+                WHEN 2 THEN '维修中'
+                WHEN 3 THEN '闲置'
+                WHEN 4 THEN '已报废'
+                ELSE '未知'
+            END as statusText
+        FROM asset_info ai
+        LEFT JOIN asset_category ac ON ai.category_id = ac.id
+        <where>
+            <if test="keyword != null and keyword != ''">
+                AND (ai.asset_name LIKE CONCAT('%', #{keyword}, '%')
+                     OR ai.asset_code LIKE CONCAT('%', #{keyword}, '%')
+                     OR ai.serial_number LIKE CONCAT('%', #{keyword}, '%')
+                     OR ai.responsible_person LIKE CONCAT('%', #{keyword}, '%'))
+            </if>
+            <if test="categoryId != null">
+                AND ai.category_id = #{categoryId}
+            </if>
+            <if test="status != null">
+                AND ai.status = #{status}
+            </if>
+            <if test="building != null and building != ''">
+                AND ai.building = #{building}
+            </if>
+            <if test="floor != null and floor != ''">
+                AND ai.floor = #{floor}
+            </if>
+            <if test="roomNumber != null and roomNumber != ''">
+                AND ai.room_number = #{roomNumber}
+            </if>
+        </where>
+        ORDER BY ai.create_time DESC
+    </select>
+
+</mapper>

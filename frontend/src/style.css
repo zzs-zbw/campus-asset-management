@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Microsoft YaHei', Arial, sans-serif;
+  background-color: #f5f7fa;
+}
+
+#app {
+  width: 100%;
+  height: 100vh;
+}
+
+.el-table {
+  font-size: 14px;
+}
+
+.el-card {
+  border-radius: 8px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
+.el-button {
+  border-radius: 4px;
+}
+
+.el-input__wrapper {
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .el-table {
+    font-size: 12px;
+  }
+  
+  .el-dialog {
+    width: 95% !important;
+  }
+  
+  .el-form-item__label {
+    width: 100px !important;
+  }
+}
