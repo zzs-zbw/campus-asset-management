@@ -21,6 +21,7 @@ CREATE TABLE sys_user (
     status TINYINT NOT NULL DEFAULT 1 COMMENT '状态：0-禁用，1-启用',
     phone VARCHAR(20) COMMENT '联系电话',
     email VARCHAR(100) COMMENT '邮箱',
+    department VARCHAR(100) COMMENT '部门',
     create_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     update_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     last_login_time DATETIME COMMENT '最后登录时间',
